@@ -17,7 +17,7 @@ public class DocumentationConfiguration {
     public Docket api() { 
         return new Docket(DocumentationType.SWAGGER_2)  
           .select()                                  
-          .apis(RequestHandlerSelectors.any())              
+          .apis(RequestHandlerSelectors.basePackage("io.cybertech.pd.controller.api"))              
           .paths(PathSelectors.any())                          
           .build();                                           
     }
