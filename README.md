@@ -7,6 +7,15 @@ file that in turn can be executed (assuming you have java install).
 
 For the non-technical folks, I'll be creating other installation methods
 
+## Interfaces
+Once running, the UI can be seen from the following link:
+
+	http://localhost:8080/swagger-ui.html
+
+In addition, the swagger documentation for this app can be found here:
+
+	http://localhost:8080/swagger-ui.html
+
 ## Enhancements
 The UI is built using Javascript that relies in REST endpoints to interact with (in-memory) data. I'm 
 specifically keeping this separation so that in the future I could maybe get a better UI (or different UI) but with
