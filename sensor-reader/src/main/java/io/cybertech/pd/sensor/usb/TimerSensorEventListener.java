@@ -1,5 +1,6 @@
 package io.cybertech.pd.sensor.usb;
 
+import io.cybertech.pd.sensor.handler.HeatResultHandler;
 import org.apache.commons.lang3.CharUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -12,22 +13,27 @@ import lombok.extern.slf4j.Slf4j;
 
 
 /**
- * 
+ * Implementation of a {@link SerialPortEventListener} that reacts to {@link SerialPortEvent} events.
+ *
+ * For more information, see:
+ *
  * https://code.google.com/archive/p/java-simple-serial-connector/wikis/jSSC_examples.wiki
  */
 @Slf4j
 public class TimerSensorEventListener implements SerialPortEventListener {
+    private final HeatResultHandler heatResultHandler;
 	private final SerialPort serialPort;
 	
-	public TimerSensorEventListener(SerialPort serialPort) {
+	public TimerSensorEventListener(SerialPort serialPort, HeatResultHandler heatResultHandler) {
 		this.serialPort = serialPort;
+		this.heatResultHandler = heatResultHandler;
 	}
 	
 	private StringBuilder heatResultsStream = new StringBuilder();
 	
 	@Override
 	public void serialEvent(SerialPortEvent event) {
-		if(event.isRXCHAR()){//If data is available
+		if (event.isRXCHAR()){//If data is available
 			
 			// per the SerialPortEvent API, "eventValue" is the bytes count for RXCHAR events.
 			int bytesCount = event.getEventValue();
@@ -43,14 +49,12 @@ public class TimerSensorEventListener implements SerialPortEventListener {
 			
 			if (isLastBuffer(buffer)) {
     			String results = cleanupBuffer(heatResultsStream.toString());
-				log.debug("");
-    			log.info("<<<<<<<<<<<  Result >>>>>>>>>>");
-    			log.info("Raw: {}", results);
+				log.debug("<<<<<<<<<<<  Result >>>>>>>>>>");
+    			log.debug("Raw: {}", results);
     			
-    			// process heat results
-    			HeatResults heatResults = SerialPortParser.buildResult(results.trim());
-
-    			log.info(heatResults.toString());
+    			// build and handle heat results
+    			HeatResults heatResults = TimerSensorEventMessageParser.buildResultFromThreeLaneEvent(results.trim());
+    			heatResultHandler.handleHeatResult(heatResults);
 
     			// reset buffer
     			heatResultsStream = new StringBuilder();
@@ -112,7 +116,6 @@ public class TimerSensorEventListener implements SerialPortEventListener {
 	 */
 	private String cleanupBuffer(String buffer) {
 		String results = StringUtils.chomp(buffer);
-		results = StringUtils.chomp(buffer); // do it twice since we may have a 13 and 10
 		return results;
 	}
 }

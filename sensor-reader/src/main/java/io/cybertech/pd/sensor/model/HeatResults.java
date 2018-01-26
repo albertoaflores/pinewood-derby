@@ -2,6 +2,9 @@ package io.cybertech.pd.sensor.model;
 
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.data.annotation.Id;
+
+import java.util.Date;
 
 /**
  * A heat result is the summary of a given result as recorded by an external system (e.g. 
@@ -13,6 +16,9 @@ import lombok.Getter;
 @Builder
 @Getter
 public class HeatResults {
+	@Id
+    private String id;
+    private Date timestamp;
 	private LaneResult firstPlace;
 	private LaneResult secondPlace;
 	private LaneResult thirdPlace;
@@ -21,7 +27,10 @@ public class HeatResults {
 	public String toString() {
 		return "(1st) " + firstPlace + ", (2nd) " + secondPlace + ", (3rd) " + thirdPlace;
 	}
-	
+
+	/**
+     * Returns the {@link LaneResult}
+     */
 	public LaneResult getLaneResult(String laneNumber) {
 		if (firstPlace.getLaneNumber().equals(laneNumber)) {
 			return firstPlace;
