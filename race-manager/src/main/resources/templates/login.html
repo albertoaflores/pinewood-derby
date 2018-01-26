@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Pinewood Derby</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/login.css}" />
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    </head>
+    <body>
+        <div class="wrapper">
+	        <form class="form-signin" th:action="@{/home}" method="post">
+	        	
+	        	<h1 class="form-signin-title"><img th:src="@{/img/pinewood_derby_logo.png}" height="150" width="150" /> </h1>
+	        	
+		        <div class="alert alert-info alert-dismissable fade in" th:if="${param.logout}">
+		        	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		            You have been logged out.
+		        </div>
+		        <div class="alert alert-danger alert-dismissable fade in" th:if="${param.error}">
+		        	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		        	Invalid username and password.
+		        </div>
+	        	
+	        	<input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
+	            <input type="password" class="form-control" name="password" placeholder="Password" required=""/> 
+	            <label class="checkbox">
+			        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me</input>
+			    </label>
+			    <button class="btn btn-lg btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-log-in"></span> Login</button> 
+	       		
+	       		<div class="form-signin-version">Version 1.0.0</div>
+	        </form>
+        </div>
+        
+    </body>
+</html>
