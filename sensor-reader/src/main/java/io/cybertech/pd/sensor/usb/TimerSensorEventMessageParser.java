@@ -5,9 +5,9 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.cybertech.pd.sensor.model.HeatResult;
 import org.apache.commons.lang3.StringUtils;
 
-import io.cybertech.pd.sensor.model.HeatResults;
 import io.cybertech.pd.sensor.model.LaneResult;
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,11 +33,11 @@ public abstract class TimerSensorEventMessageParser {
 	private static final Pattern HEAT_RESULT_PATTERN = Pattern.compile(HEAT_RESULT_REGEX);
 
 	/**
-     * Builds a {@link HeatResults} model object from a string buffer containing the results of
+     * Builds a {@link HeatResult} model object from a string buffer containing the results of
      * a heat with 3 lanes.
      * @param result the buffer containing the result of a heat. The format (regex) is described in {@link #HEAT_RESULT_REGEX}
      */
-	public static HeatResults buildResultFromThreeLaneEvent(String result) {
+	public static HeatResult buildResultFromThreeLaneEvent(String result) {
         // TODO: improve regex so that we simply get groups for each lane
         Matcher matcher = HEAT_RESULT_PATTERN.matcher(result);
 		if (matcher.matches()) {
@@ -77,7 +77,7 @@ public abstract class TimerSensorEventMessageParser {
 											  .build();
 
 			// return result model object
-			return HeatResults.builder()
+			return HeatResult.builder()
                                 .id(UUID.randomUUID().toString())
                                 .firstPlace(firstPlace)
                                 .secondPlace(secondPlace)

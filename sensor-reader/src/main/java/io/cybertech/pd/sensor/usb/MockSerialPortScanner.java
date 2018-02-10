@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 import io.cybertech.pd.sensor.handler.HeatResultHandler;
+import io.cybertech.pd.sensor.model.HeatResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import io.cybertech.pd.sensor.model.HeatResults;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -40,7 +40,7 @@ public class MockSerialPortScanner {
         log.debug("Raw: {}", result);
 
         // build and handle heat results
-        HeatResults heatResults = TimerSensorEventMessageParser.buildResultFromThreeLaneEvent(result);
+        HeatResult heatResults = TimerSensorEventMessageParser.buildResultFromThreeLaneEvent(result);
 		heatResultHandler.handleHeatResult(heatResults);
 
 		// update mock counter

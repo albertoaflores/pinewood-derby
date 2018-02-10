@@ -1,6 +1,6 @@
 package io.cybertech.pd.sensor.handler;
 
-import io.cybertech.pd.sensor.model.HeatResults;
+import io.cybertech.pd.sensor.model.HeatResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ public class SimpleHeatResultHandler implements HeatResultHandler {
      * This implementation simply logs the heat result to the logging framework.
      */
     @Override
-    public void handleHeatResult(HeatResults results) {
+    public void handleHeatResult(HeatResult results) {
         log.info(results.toString());
     }
 }

@@ -1,10 +1,10 @@
 package io.cybertech.pd.sensor.usb;
 
 import io.cybertech.pd.sensor.handler.HeatResultHandler;
+import io.cybertech.pd.sensor.model.HeatResult;
 import org.apache.commons.lang3.CharUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import io.cybertech.pd.sensor.model.HeatResults;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
@@ -53,7 +53,7 @@ public class TimerSensorEventListener implements SerialPortEventListener {
     			log.debug("Raw: {}", results);
     			
     			// build and handle heat results
-    			HeatResults heatResults = TimerSensorEventMessageParser.buildResultFromThreeLaneEvent(results.trim());
+    			HeatResult heatResults = TimerSensorEventMessageParser.buildResultFromThreeLaneEvent(results.trim());
     			heatResultHandler.handleHeatResult(heatResults);
 
     			// reset buffer
