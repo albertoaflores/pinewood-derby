@@ -6,21 +6,21 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import io.cybertech.pd.model.RacerInformation;
-import io.cybertech.pd.model.repository.RacerInformationRepository;
+import io.cybertech.pd.model.Racer;
+import io.cybertech.pd.model.repository.RacerRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
 public class RacerService {
-	@Autowired private RacerInformationRepository racerRepository;
+	@Autowired private RacerRepository racerRepository;
 	
-	public void addRacer(RacerInformation racer) {
+	public void addRacer(Racer racer) {
 		if (racer.getId() == null) {
 			racer.setId(System.currentTimeMillis());
 		}
 		
-		RacerInformation existingRecord = getRacer(racer.getId());
+		Racer existingRecord = getRacer(racer.getId());
 		log.info("Racer Id: {}", racer.getId());
 		
 		if (existingRecord == null) {
@@ -30,14 +30,14 @@ public class RacerService {
 		} else {
 			log.info("Racer record update: {}", racer);
 			existingRecord.setRacerName(racer.getRacerName());
-			existingRecord.setCarNumber(racer.getCarNumber());
+			existingRecord.setCarName(racer.getCarName());
 			existingRecord.setGroupName(racer.getGroupName());
 			existingRecord.setUpdated(new Date());
 			racerRepository.save(existingRecord);
 		}
 	}
 	
-	public RacerInformation getRacer(Long racerId) {
+	public Racer getRacer(Long racerId) {
 		return racerRepository.findOne(racerId);
 	}
 	
@@ -45,7 +45,7 @@ public class RacerService {
 		racerRepository.delete(racerId);
 	}
 	
-	public Collection<RacerInformation> getAllRacers() {
+	public Collection<Racer> getAllRacers() {
 		return racerRepository.findAll();
 	}
 }

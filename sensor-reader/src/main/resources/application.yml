@@ -7,4 +7,4 @@ spring:
     mongodb:
       port: 32770
       host: localhost
-      database: pinewoodDerby
+      database: sensor-data

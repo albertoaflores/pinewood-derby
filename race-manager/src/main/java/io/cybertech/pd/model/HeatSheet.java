@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import io.cybertech.pd.model.dto.external.HeatResult;
 import org.springframework.data.annotation.Id;
 
 import io.cybertech.pd.service.algorithm.SheetGeneratorAlgorithm;
@@ -17,13 +18,13 @@ import lombok.Data;
 public class HeatSheet {
 	@Id
 	private final Long id;
-	private final Collection<RacerInformation> racers;
+	private final Collection<Racer> racers;
 	private final int numberOfRunsPerRacer;
 	private List<HeatEvent> events = new ArrayList<>();
 	private Date created;
 	private Date startTime;
 	
-	public HeatSheet(Collection<RacerInformation> racers, int numberOfRunsPerRacer) {
+	public HeatSheet(Collection<Racer> racers, int numberOfRunsPerRacer) {
 		// setup 
 		this.id = System.currentTimeMillis();
 		this.created = new Date();
@@ -35,7 +36,7 @@ public class HeatSheet {
 		events = sheetGenerator.generateEvents(racers, numberOfRunsPerRacer);
 	}
 	
-	public void updateHeatResult(int heatIndex, HeatResults heatResults) {
+	public void updateHeatResult(int heatIndex, HeatResult heatResults) {
 		if (events.size() >= heatIndex) {
 			throw new IllegalArgumentException("Unable to update invalid heat!");
 		}
@@ -47,10 +48,10 @@ public class HeatSheet {
 		//collections.sort
 	}
 	
-	private final SortedSet<RacerInformation> ranking = new TreeSet<RacerInformation>(new Comparator<RacerInformation>() {
+	private final SortedSet<Racer> ranking = new TreeSet<Racer>(new Comparator<Racer>() {
 
 		@Override
-		public int compare(RacerInformation racer1, RacerInformation racer2) {
+		public int compare(Racer racer1, Racer racer2) {
 			return racer1.getBestTime().compareTo(racer2.getBestTime());
 		}
 	});

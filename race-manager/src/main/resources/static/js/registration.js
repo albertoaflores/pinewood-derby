@@ -43,7 +43,7 @@ function updateRacer(racerId) {
 	}).done(function(data){
 		$('input[name="id"]').val(data.id);
 		$('input[name="racerName"]').val(data.racerName);
-		$('input[name="carNumber"]').val(data.carNumber);
+		$('input[name="carName"]').val(data.carNumber);
 		$('select[name="groupName"]').val(data.groupName);
 		// No need to update list as this is only going to populate the editor
 	});
@@ -113,7 +113,7 @@ form.submit(function(event){
 	var racerData = {};
 	racerData.id = $(this).find("input[name='id']").val();
 	racerData.racerName = $(this).find("input[name='racerName']").val();
-	racerData.carNumber = $(this).find("input[name='carNumber']").val();
+	racerData.carNumber = $(this).find("input[name='carName']").val();
 	racerData.groupName = $(this).find("select[name='groupName']").val();
 	
 	$.ajax({

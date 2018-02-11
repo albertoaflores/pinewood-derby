@@ -1,4 +1,4 @@
-package io.cybertech.pd.model;
+package io.cybertech.pd.model.dto.external;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,12 +7,12 @@ import lombok.Getter;
  * A heat result is the summary of a given result as recorded by an external system (e.g. 
  * a sensor, usb port, etc).
  * 
- * <p>In general HeatResults are considered immutable since they are created once and expected
+ * <p>In general HeatResult are considered immutable since they are created once and expected
  * to never be updated.
  */
 @Builder
 @Getter
-public class HeatResults {
+public class HeatResult {
 	private LaneResult firstPlace;
 	private LaneResult secondPlace;
 	private LaneResult thirdPlace;

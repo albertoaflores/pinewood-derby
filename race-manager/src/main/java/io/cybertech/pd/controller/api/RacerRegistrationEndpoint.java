@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.cybertech.pd.model.RacerInformation;
+import io.cybertech.pd.model.Racer;
 import io.cybertech.pd.service.RacerService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,19 +27,19 @@ public class RacerRegistrationEndpoint {
 	@Autowired private RacerService racerService;
 
 	@RequestMapping(method={PUT, POST})
-	public void saveRacerRegistration(@RequestBody(required=true) RacerInformation racer) {
+	public void saveRacerRegistration(@RequestBody(required=true) Racer racer) {
 		log.info("Saving racer {}", racer);
 		racerService.addRacer(racer);
 	}
 	
 	@RequestMapping(method={GET})
-	public Collection<RacerInformation> getAllRacers() {
+	public Collection<Racer> getAllRacers() {
 		return racerService.getAllRacers();
 	}
 	
 	@RequestMapping(path="/{racerId}", method={GET})
-	public RacerInformation getRacer(@PathVariable Long racerId, HttpServletResponse response) {
-		RacerInformation racer = racerService.getRacer(racerId);
+	public Racer getRacer(@PathVariable Long racerId, HttpServletResponse response) {
+		Racer racer = racerService.getRacer(racerId);
 		if (racer == null) {
 			log.info("Racer '{}' not found!", racerId);
 			response.setStatus(404);
@@ -49,7 +49,7 @@ public class RacerRegistrationEndpoint {
 	
 	@RequestMapping(path="/{racerId}", method={DELETE})
 	public void deleteRacer(@PathVariable Long racerId, HttpServletResponse response) {
-		RacerInformation racer = racerService.getRacer(racerId);
+		Racer racer = racerService.getRacer(racerId);
 		if (racer == null) {
 			log.info("Racer '{}' not found!", racerId);
 			response.setStatus(404);

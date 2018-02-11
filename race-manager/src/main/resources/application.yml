@@ -1,7 +1,10 @@
+
 spring:
   thymeleaf:
     cache: false  
   data:
     mongodb:
       port: 32770
-      database: pinewoodDerby
+      database: race-manager
+server:
+  port: 8090

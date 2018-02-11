@@ -8,27 +8,27 @@ import java.util.Random;
 import org.springframework.util.CollectionUtils;
 
 import io.cybertech.pd.model.HeatEvent;
-import io.cybertech.pd.model.RacerInformation;
+import io.cybertech.pd.model.Racer;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class NaiveSheetGeneratorImpl implements SheetGeneratorAlgorithm {
 
 	@Override
-	public List<HeatEvent> generateEvents(Collection<RacerInformation> racers, int numberOfRunsPerRacer) {
+	public List<HeatEvent> generateEvents(Collection<Racer> racers, int numberOfRunsPerRacer) {
 		List<HeatEvent> events = new ArrayList<>();
 		
 		Random random = new Random();
 		for (int run=0; run < numberOfRunsPerRacer; run++) {
 			// create copy of the racer list
-			List<RacerInformation> toBeAssigned = new ArrayList<>(racers);
-			List<RacerInformation> assigned = new ArrayList<>(racers);
+			List<Racer> toBeAssigned = new ArrayList<>(racers);
+			List<Racer> assigned = new ArrayList<>(racers);
 			
 			int numberOfHeats = toBeAssigned.size() / 3;
 			for (int heatNumber = 0; heatNumber < numberOfHeats; heatNumber++) {
-				RacerInformation racerInLane1 = removeRandomRacer(toBeAssigned, random);
-				RacerInformation racerInLane2 = removeRandomRacer(toBeAssigned, random);
-				RacerInformation racerInLane3 = removeRandomRacer(toBeAssigned, random);
+				Racer racerInLane1 = removeRandomRacer(toBeAssigned, random);
+				Racer racerInLane2 = removeRandomRacer(toBeAssigned, random);
+				Racer racerInLane3 = removeRandomRacer(toBeAssigned, random);
 				
 				HeatEvent event = new HeatEvent();
 				event.setLane1(racerInLane1);
@@ -46,9 +46,9 @@ public class NaiveSheetGeneratorImpl implements SheetGeneratorAlgorithm {
 			if (!toBeAssigned.isEmpty()) {
 				log.info("Handling last heat with {} racer.", toBeAssigned.size());
 				// remainder has to be of size 1 or 2
-				RacerInformation racerInLane1 = removeRandomRacer(toBeAssigned, random);
-				RacerInformation racerInLane2 = toBeAssigned.isEmpty() ? removeRandomRacer(assigned, random) : removeRandomRacer(toBeAssigned, random);
-				RacerInformation racerInLane3 = toBeAssigned.isEmpty() ? removeRandomRacer(assigned, random) : removeRandomRacer(toBeAssigned, random);
+				Racer racerInLane1 = removeRandomRacer(toBeAssigned, random);
+				Racer racerInLane2 = toBeAssigned.isEmpty() ? removeRandomRacer(assigned, random) : removeRandomRacer(toBeAssigned, random);
+				Racer racerInLane3 = toBeAssigned.isEmpty() ? removeRandomRacer(assigned, random) : removeRandomRacer(toBeAssigned, random);
 				
 				if (!toBeAssigned.isEmpty()) {
 					log.warn("We are missing racers in heats!");					
@@ -65,7 +65,7 @@ public class NaiveSheetGeneratorImpl implements SheetGeneratorAlgorithm {
 		return events;
 	}
 	
-	private RacerInformation removeRandomRacer(List<RacerInformation> copy, Random random) {
+	private Racer removeRandomRacer(List<Racer> copy, Random random) {
 		if (CollectionUtils.isEmpty(copy)) {
 			return null;
 		}

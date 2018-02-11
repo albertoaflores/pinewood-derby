@@ -17,7 +17,7 @@ import java.util.Date;
  */
 @Builder
 @Getter
-@Document(collection = "heatResults")
+@Document(collection = "heat-results")
 public class HeatResult {
 	@Id
     private String id;

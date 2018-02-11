@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import io.cybertech.pd.model.HeatEvent;
-import io.cybertech.pd.model.RacerInformation;
+import io.cybertech.pd.model.Racer;
 
 /**
  * Algorithm contract to provide the list of events from a collection of racers.
@@ -19,5 +19,5 @@ import io.cybertech.pd.model.RacerInformation;
  */
 public interface SheetGeneratorAlgorithm {
 
-	List<HeatEvent> generateEvents(Collection<RacerInformation> racers, int numberOfRunsPerRacer);
+	List<HeatEvent> generateEvents(Collection<Racer> racers, int numberOfRunsPerRacer);
 }

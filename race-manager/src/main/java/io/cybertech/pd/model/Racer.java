@@ -9,15 +9,17 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Builder
-@JsonDeserialize(builder = RacerInformation.RacerInformationBuilder.class)
-public class RacerInformation {
+@JsonDeserialize(builder = Racer.RacerInformationBuilder.class)
+@Document(collection = "racers")
+public class Racer {
 	@Id
 	private Long id;
 	private String racerName;
-	private String carNumber;
+	private String carName;
 	private String groupName;
 	private Double bestTime;
 	private Date created;
@@ -25,7 +27,7 @@ public class RacerInformation {
 	
 	@Override
 	public String toString() {
-		return "Name: " + racerName + ", Car#: " + carNumber + ", Group: " + groupName;
+		return "Name: " + racerName + ", Car: " + carName + ", Group: " + groupName;
 	}
 	
 	@JsonPOJOBuilder(withPrefix="")

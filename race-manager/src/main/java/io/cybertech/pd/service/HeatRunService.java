@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 import io.cybertech.pd.model.HeatEvent;
 import io.cybertech.pd.model.HeatSheet;
-import io.cybertech.pd.model.HeatSheetSummary;
-import io.cybertech.pd.model.RacerInformation;
+import io.cybertech.pd.model.dto.HeatSheetSummary;
+import io.cybertech.pd.model.Racer;
 import io.cybertech.pd.service.algorithm.NaiveSheetGeneratorImpl;
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 public class HeatRunService {
 	private Map<Long, HeatSheet> repository = new HashMap<>();
 	
-	public void createHeatSheet(Collection<RacerInformation> racers, int numberOfRunsPerRacer) {
+	public void createHeatSheet(Collection<Racer> racers, int numberOfRunsPerRacer) {
 		HeatSheet heatSheet = new HeatSheet(racers, numberOfRunsPerRacer);
 		log.info("Generating events for {} racers.", racers.size());
 		heatSheet.createEvents(new NaiveSheetGeneratorImpl()); // TODO: Introduce IoC on the generator algorithm

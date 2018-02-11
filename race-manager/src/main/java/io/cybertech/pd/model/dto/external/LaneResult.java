@@ -1,4 +1,4 @@
-package io.cybertech.pd.model;
+package io.cybertech.pd.model.dto.external;
 
 import lombok.Builder;
 import lombok.Getter;

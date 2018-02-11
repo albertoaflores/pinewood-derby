@@ -1,14 +1,18 @@
 package io.cybertech.pd.model;
 
+import io.cybertech.pd.model.dto.external.HeatResult;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 
 /**
  * A heat event reflects a specific heat run for the 3 racers. It also contains the result of this event.
  */
 @Data
 public class HeatEvent {
-	private RacerInformation lane1;
-	private RacerInformation lane2;
-	private RacerInformation lane3;
-	private HeatResults result;
+    @Id
+	private String id;
+	private Racer lane1;
+	private Racer lane2;
+	private Racer lane3;
+	private HeatResult result;
 }
