@@ -9,6 +9,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import io.cybertech.pd.model.dto.external.HeatResult;
+import io.cybertech.pd.model.entity.Racer;
 import org.springframework.data.annotation.Id;
 
 import io.cybertech.pd.service.algorithm.SheetGeneratorAlgorithm;
@@ -24,12 +25,13 @@ public class HeatSheet {
 	private Date created;
 	private Date startTime;
 	
-	public HeatSheet(Collection<Racer> racers, int numberOfRunsPerRacer) {
+	public HeatSheet(Iterable<Racer> racers, int numberOfRunsPerRacer) {
 		// setup 
 		this.id = System.currentTimeMillis();
 		this.created = new Date();
-		this.racers = racers;
 		this.numberOfRunsPerRacer = numberOfRunsPerRacer;
+		this.racers = new ArrayList<>();
+		racers.forEach(this.racers::add);
 	}
 	
 	public void createEvents(SheetGeneratorAlgorithm sheetGenerator) {
@@ -40,19 +42,11 @@ public class HeatSheet {
 		if (events.size() >= heatIndex) {
 			throw new IllegalArgumentException("Unable to update invalid heat!");
 		}
-		
+
 		HeatEvent heat = events.get(heatIndex);
 		heat.setResult(heatResults);
-		
+
 		// TODO: update racer ranking when saving heat result
 		//collections.sort
 	}
-	
-	private final SortedSet<Racer> ranking = new TreeSet<Racer>(new Comparator<Racer>() {
-
-		@Override
-		public int compare(Racer racer1, Racer racer2) {
-			return racer1.getBestTime().compareTo(racer2.getBestTime());
-		}
-	});
 }

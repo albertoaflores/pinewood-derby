@@ -12,7 +12,7 @@ import lombok.Getter;
 @Builder
 @Getter
 public class LaneResult {
-	private String laneNumber;
+	private int laneNumber;
 	private Double time;
 	
 	@Override

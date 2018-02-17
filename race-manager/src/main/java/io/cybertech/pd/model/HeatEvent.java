@@ -1,6 +1,7 @@
 package io.cybertech.pd.model;
 
 import io.cybertech.pd.model.dto.external.HeatResult;
+import io.cybertech.pd.model.entity.Racer;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
@@ -15,4 +16,6 @@ public class HeatEvent {
 	private Racer lane2;
 	private Racer lane3;
 	private HeatResult result;
+
+
 }

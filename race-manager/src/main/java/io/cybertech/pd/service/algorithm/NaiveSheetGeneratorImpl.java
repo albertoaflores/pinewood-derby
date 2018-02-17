@@ -5,10 +5,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+import io.cybertech.pd.model.entity.Racer;
 import org.springframework.util.CollectionUtils;
 
 import io.cybertech.pd.model.HeatEvent;
-import io.cybertech.pd.model.Racer;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

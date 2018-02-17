@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import io.cybertech.pd.model.HeatEvent;
-import io.cybertech.pd.model.Racer;
+import io.cybertech.pd.model.entity.Racer;
 
 /**
  * Algorithm contract to provide the list of events from a collection of racers.

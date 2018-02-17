@@ -13,6 +13,7 @@ import lombok.Getter;
 @Builder
 @Getter
 public class HeatResult {
+
 	private LaneResult firstPlace;
 	private LaneResult secondPlace;
 	private LaneResult thirdPlace;
@@ -22,15 +23,18 @@ public class HeatResult {
 		return "(1st) " + firstPlace + ", (2nd) " + secondPlace + ", (3rd) " + thirdPlace;
 	}
 	
-	public LaneResult getLaneResult(String laneNumber) {
-		if (firstPlace.getLaneNumber().equals(laneNumber)) {
+	public LaneResult getLaneResult(int laneNumber) {
+		if (firstPlace.getLaneNumber() == laneNumber) {
 			return firstPlace;
-		} else if (secondPlace.getLaneNumber().equals(laneNumber)) {
+		} else if (secondPlace.getLaneNumber() == laneNumber) {
 			return secondPlace;
-		} else if (thirdPlace.getLaneNumber().equals(laneNumber)) {
+		} else if (thirdPlace.getLaneNumber() == laneNumber) {
 			return thirdPlace;
 		}
 		return null;
 	}
-	
+
+	public boolean isFirstPlace(int laneNumber) {
+	    return firstPlace.equals(getLaneResult(laneNumber));
+    }
 }

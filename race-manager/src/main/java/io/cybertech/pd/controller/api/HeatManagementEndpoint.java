@@ -9,6 +9,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletResponse;
 
+import io.cybertech.pd.model.entity.repository.RacerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import io.cybertech.pd.model.dto.external.HeatResult;
 import io.cybertech.pd.model.HeatSheet;
 import io.cybertech.pd.model.dto.HeatSheetSummary;
-import io.cybertech.pd.model.Racer;
+import io.cybertech.pd.model.entity.Racer;
 import io.cybertech.pd.service.HeatRunService;
-import io.cybertech.pd.service.RacerService;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -27,21 +27,22 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/heat/management")
 public class HeatManagementEndpoint {
 	@Autowired private HeatRunService heatRunService;
-	@Autowired private RacerService racerService;
+	@Autowired private RacerRepository racerRepository;
 	
 	@RequestMapping(path="/sheet/build/{numberOfRunsPerRacer}", method={POST})
 	public void buildHeatSheet(@PathVariable(required=true) int numberOfRunsPerRacer, HttpServletResponse response) {
-		Collection<Racer> racers = racerService.getAllRacers();
-		if (racers.size() < 3) {
-			log.warn("Can't build a heat sheet with {} racers.", racers.size());
+		long numberOfRacers = racerRepository.count();
+		if (numberOfRacers < 3) {
+			log.warn("Can't build a heat sheet with {} racers.", numberOfRacers);
 			try {
-				response.sendError(400, String.format("Can't build heat sheet with %d racers.", racers.size()));
+				response.sendError(400, String.format("Can't build heat sheet with %d racers.", numberOfRacers));
 			} catch (IOException e) {
 				log.error("Unable to send 400 error code!", e);
 			}
 		} else {
-			log.info("Building heat sheet with {} races per racer for {} racers.", numberOfRunsPerRacer, racers.size());
-			heatRunService.createHeatSheet(racers, numberOfRunsPerRacer);
+			log.info("Building heat sheet with {} races per racer for {} racers.", numberOfRunsPerRacer, numberOfRacers);
+            Iterable<Racer> racers = racerRepository.findAll();
+            heatRunService.createHeatSheet(racers, numberOfRunsPerRacer);
 		}
 	}
 	
