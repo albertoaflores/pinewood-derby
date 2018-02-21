@@ -11,7 +11,7 @@ import lombok.Getter;
  */
 @Builder
 @Getter
-public class LaneResult {
+public class LaneTimerReadout {
 	private int laneNumber;
 	private Double time;
 	

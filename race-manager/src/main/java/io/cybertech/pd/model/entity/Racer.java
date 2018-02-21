@@ -1,6 +1,8 @@
 package io.cybertech.pd.model.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +27,16 @@ public class Racer {
 	private String carName;
 	private String groupName;
 
-	@Column(nullable = false, updatable = false)
+	@OneToMany(mappedBy = "racerInLane1", cascade = CascadeType.ALL)
+	private List<HeatEvent> eventsInLane1 = new ArrayList<>();
+
+    @OneToMany(mappedBy = "racerInLane2", cascade = CascadeType.ALL)
+	private List<HeatEvent> eventsInLane2 = new ArrayList<>();
+
+    @OneToMany(mappedBy = "racerInLane3", cascade = CascadeType.ALL)
+    private List<HeatEvent> eventsInLane3 = new ArrayList<>();
+
+    @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
 	private Date created;

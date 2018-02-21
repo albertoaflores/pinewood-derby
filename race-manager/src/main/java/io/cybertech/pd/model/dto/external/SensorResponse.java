@@ -7,23 +7,23 @@ import lombok.Getter;
  * A heat result is the summary of a given result as recorded by an external system (e.g. 
  * a sensor, usb port, etc).
  * 
- * <p>In general HeatResult are considered immutable since they are created once and expected
+ * <p>In general SensorResponse are considered immutable since they are created once and expected
  * to never be updated.
  */
 @Builder
 @Getter
-public class HeatResult {
+public class SensorResponse {
 
-	private LaneResult firstPlace;
-	private LaneResult secondPlace;
-	private LaneResult thirdPlace;
+	private LaneTimerReadout firstPlace;
+	private LaneTimerReadout secondPlace;
+	private LaneTimerReadout thirdPlace;
 	
 	@Override
 	public String toString() {
 		return "(1st) " + firstPlace + ", (2nd) " + secondPlace + ", (3rd) " + thirdPlace;
 	}
 	
-	public LaneResult getLaneResult(int laneNumber) {
+	public LaneTimerReadout getLaneResult(int laneNumber) {
 		if (firstPlace.getLaneNumber() == laneNumber) {
 			return firstPlace;
 		} else if (secondPlace.getLaneNumber() == laneNumber) {

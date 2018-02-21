@@ -3,7 +3,7 @@ package io.cybertech.pd.service.algorithm;
 import java.util.Collection;
 import java.util.List;
 
-import io.cybertech.pd.model.HeatEvent;
+import io.cybertech.pd.model.entity.HeatEvent;
 import io.cybertech.pd.model.entity.Racer;
 
 /**
