@@ -17,11 +17,7 @@ public class SensorResponse {
 	private LaneTimerReadout firstPlace;
 	private LaneTimerReadout secondPlace;
 	private LaneTimerReadout thirdPlace;
-	
-	@Override
-	public String toString() {
-		return "(1st) " + firstPlace + ", (2nd) " + secondPlace + ", (3rd) " + thirdPlace;
-	}
+
 	
 	public LaneTimerReadout getLaneResult(int laneNumber) {
 		if (firstPlace.getLaneNumber() == laneNumber) {
@@ -34,7 +30,4 @@ public class SensorResponse {
 		return null;
 	}
 
-	public boolean isFirstPlace(int laneNumber) {
-	    return firstPlace.equals(getLaneResult(laneNumber));
-    }
 }
