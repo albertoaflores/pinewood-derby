@@ -1,0 +1,107 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  line-height: 50px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 50px 15px 0;
+}
+
+body > .container-fluid {
+  padding: 50px 15px 0;
+}
+
+.lane {
+    font-size: 80%;
+    color: gray;
+}
+
+.racer-name {
+    font-size: 120%;
+}
+
+.racer-status {
+    font-size: 80%;
+}
+
+.racer-status.ready {
+    color: green;
+}
+
+.racer-status.notReady {
+    color: red;
+}
+
+.picture {
+    padding-bottom: 10px;
+}
+
+.best-time {
+    color: gray;
+    font-size: 60%;
+}
+
+.racer-status {
+    font-size: 60%;    
+}
+
+.contestants {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.racer-info {
+    padding-bottom: 20px;
+}
+
+.main {
+    padding-top: 40px;
+}
+
+.upcoming-heats {
+    padding-top: 40px;
+}
+
+.standings {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.heats {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.nav-item {
+    padding-left: 5px;
+}
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+
