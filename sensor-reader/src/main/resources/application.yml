@@ -2,6 +2,7 @@
 logging:
   level:
     root: warn
+    io.cybertech.pd.sensor: info
 spring:
   data:
     mongodb:

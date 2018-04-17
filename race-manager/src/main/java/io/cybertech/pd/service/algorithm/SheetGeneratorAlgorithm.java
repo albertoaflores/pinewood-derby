@@ -19,5 +19,5 @@ import io.cybertech.pd.model.entity.Racer;
  */
 public interface SheetGeneratorAlgorithm {
 
-	List<HeatEvent> generateEvents(Collection<Racer> racers, int numberOfRunsPerRacer);
+	List<HeatEvent> generateEvents(int numberOfTimesInEachLane, int numberOfRunsPerRacer);
 }

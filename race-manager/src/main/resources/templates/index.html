@@ -12,11 +12,21 @@
 
 <!-- Insert content into the layouts/layout.html -->
 <th:block layout:fragment="content" class="no-margin">
-	
-    <div class=".jumbotron">
-        <img src="../static/img/PWDLogo.jpg" class="img-responsive text-center"
-             th:src="@{img/PWDLogo.jpg}"/>
-    </div>
+
+    <main role="main" class="container-fluid">
+        <div class="row main">
+            <div class="col-12 text-center">
+                <img th:src="@{/img/pinewood-derby-car-18.gif}" />
+            </div>
+            <div class="col-12 text-center">
+                <h1>Welcome to Pinewood Derby</h1>
+            </div>
+            <div class="col-12 text-center">
+                <h4>Race in Progress...</h4>
+            </div>
+        </div>
+    </main>
+
 </th:block>
 </body>
 </html>

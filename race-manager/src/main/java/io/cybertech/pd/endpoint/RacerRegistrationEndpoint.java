@@ -1,4 +1,4 @@
-package io.cybertech.pd.controller.api;
+package io.cybertech.pd.endpoint;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;

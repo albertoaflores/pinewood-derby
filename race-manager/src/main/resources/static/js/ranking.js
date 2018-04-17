@@ -1,1 +1,0 @@
-console.log('Ranking code is here')

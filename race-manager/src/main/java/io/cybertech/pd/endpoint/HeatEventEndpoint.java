@@ -1,4 +1,4 @@
-package io.cybertech.pd.controller.api;
+package io.cybertech.pd.endpoint;
 
 import io.cybertech.pd.model.dto.external.SensorResponse;
 import io.cybertech.pd.model.entity.HeatEvent;
