@@ -1,21 +1,21 @@
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
 .footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 50px;
-  line-height: 50px; /* Vertically center the text there */
-  background-color: #f5f5f5;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 50px;
+    line-height: 50px; /* Vertically center the text there */
+    background-color: #f5f5f5;
 }
 
 
@@ -24,11 +24,11 @@ body {
 /* Not required for template or sticky footer method. */
 
 body > .container {
-  padding: 50px 15px 0;
+    padding: 50px 15px 0;
 }
 
 body > .container-fluid {
-  padding: 50px 15px 0;
+    padding: 50px 15px 0;
 }
 
 .lane {
@@ -36,8 +36,24 @@ body > .container-fluid {
     color: gray;
 }
 
+.current-lane {
+    font-size: 80%;
+    color: white;
+    background-color: black;
+}
+
 .racer-name {
     font-size: 120%;
+
+}
+.racer-name.current-racer {
+    font-size: 140%;
+    color: white;
+    background-color: black;
+
+    border: 2px solid green;
+    padding: 5px;
+    border-radius: 20px;
 }
 
 .racer-status {
@@ -62,7 +78,7 @@ body > .container-fluid {
 }
 
 .racer-status {
-    font-size: 60%;    
+    font-size: 60%;
 }
 
 .contestants {
@@ -96,12 +112,12 @@ body > .container-fluid {
     padding-left: 5px;
 }
 .footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 code {
-  font-size: 80%;
+    font-size: 80%;
 }
 
 
