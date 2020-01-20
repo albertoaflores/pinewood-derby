@@ -1,7 +1,7 @@
 var datetime = null,
         date = null;
 
-// updates the 
+// updates the 'datetime' component.
 var update = function () {
     date = moment(new Date())
     datetime.html(date.format('dddd, MMMM Do YYYY, h:mm:ss a'));

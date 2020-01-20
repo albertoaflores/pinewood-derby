@@ -1,4 +1,4 @@
-package io.cybertech.pd.sensor.usb;
+package io.cybertech.pd.sensor.model.parser;
 
 import java.util.Date;
 import java.util.UUID;
@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
  * value, hence the first (K,V) tuple is the first place, and so on.
  */
 @Slf4j
-public abstract class TimerSensorEventMessageParser {
+public abstract class HeatResultParser {
 
 	// Sample result from the serial port is the following buffer:   1=1.5871! 3=2.4534" 2=2.8777#
 	private static final String HEAT_RESULT_REGEX = "(.*)=(.*!?) (.*)=(.*\"?) (.*)=(.*#?)";

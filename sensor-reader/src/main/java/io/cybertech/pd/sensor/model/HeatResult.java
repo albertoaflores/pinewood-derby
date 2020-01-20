@@ -2,9 +2,6 @@ package io.cybertech.pd.sensor.model;
 
 import lombok.Builder;
 import lombok.Getter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
@@ -17,12 +14,8 @@ import java.util.Date;
  */
 @Builder
 @Getter
-@Document(collection = "heat-results")
 public class HeatResult {
-	@Id
     private String id;
-
-	@Indexed(expireAfterSeconds = 36000) // TTL to 10 hours
     private Date timestamp;
 	private LaneResult firstPlace;
 	private LaneResult secondPlace;

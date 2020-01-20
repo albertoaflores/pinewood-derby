@@ -7,19 +7,20 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import io.cybertech.pd.sensor.handler.HeatResultHandler;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import jssc.SerialPort;
 import jssc.SerialPortException;
 import jssc.SerialPortList;
 import lombok.extern.slf4j.Slf4j;
 
-@Component
 @Slf4j
 public class SerialPortScanner {
-    @Autowired private HeatResultHandler heatResultHandler;
+	private HeatResultHandler heatResultHandler;
 	private Map<String, SerialPort> serialPorts = new HashMap<>();
+
+	public SerialPortScanner(HeatResultHandler heatResultHandler) {
+		this.heatResultHandler = heatResultHandler;
+	}
 
 	@PostConstruct
 	public void configure() {
@@ -74,7 +75,7 @@ public class SerialPortScanner {
 	        serialPort.setEventsMask(mask);
 	        
 	        // setup listener 
-	        serialPort.addEventListener(new TimerSensorEventListener(serialPort, heatResultHandler));
+	        serialPort.addEventListener(new HeatResultEventListener(serialPort, heatResultHandler));
 	        log.info("Registered time sensor listener on serial port '{}'", serialPortAddress);
 	    }
 	    catch (SerialPortException ex) {

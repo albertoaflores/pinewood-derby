@@ -2,6 +2,7 @@ package io.cybertech.pd.sensor.usb;
 
 import io.cybertech.pd.sensor.handler.HeatResultHandler;
 import io.cybertech.pd.sensor.model.HeatResult;
+import io.cybertech.pd.sensor.model.parser.HeatResultParser;
 import org.apache.commons.lang3.CharUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -14,17 +15,21 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Implementation of a {@link SerialPortEventListener} that reacts to {@link SerialPortEvent} events.
+ * The expected events are expected to be of the form:
+ * <pre>
+ *     2=1.4096! 1=2.0929" 3=2.7618#
+ * </pre>
  *
  * For more information, see:
  *
  * https://code.google.com/archive/p/java-simple-serial-connector/wikis/jSSC_examples.wiki
  */
 @Slf4j
-public class TimerSensorEventListener implements SerialPortEventListener {
+public class HeatResultEventListener implements SerialPortEventListener {
     private final HeatResultHandler heatResultHandler;
 	private final SerialPort serialPort;
 	
-	public TimerSensorEventListener(SerialPort serialPort, HeatResultHandler heatResultHandler) {
+	public HeatResultEventListener(SerialPort serialPort, HeatResultHandler heatResultHandler) {
 		this.serialPort = serialPort;
 		this.heatResultHandler = heatResultHandler;
 	}
@@ -53,7 +58,7 @@ public class TimerSensorEventListener implements SerialPortEventListener {
     			log.debug("Raw: {}", results);
     			
     			// build and handle heat results
-    			HeatResult heatResults = TimerSensorEventMessageParser.buildResultFromThreeLaneEvent(results.trim());
+    			HeatResult heatResults = HeatResultParser.buildResultFromThreeLaneEvent(results.trim());
     			heatResultHandler.handleHeatResult(heatResults);
 
     			// reset buffer
