@@ -20,6 +20,7 @@
 	
 	<modules>
 		<module>sensor-reader</module>
+        <module>race-manager-ui</module>
 		<module>race-manager</module>
 	</modules>
 

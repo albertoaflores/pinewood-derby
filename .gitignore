@@ -3,5 +3,29 @@ target/**
 **/.classpath
 **/.project
 **/.settings
-*.iml
+
+# Apple #
+.DS_Store
+
+# Intellij #
 .idea
+*.iml
+*.log
+
+# Eclipse #
+.settings
+.project
+.classpath
+.studio
+
+# VSCode
+.vscode
+
+# logback
+logback.out.xml
+
+# Don't allow 'public' folder as it is built dynamically
+race-manager/src/main/resources/public/
+
+
+
