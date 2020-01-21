@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div>
-      <b-navbar toggleable="lg" type="dark" variant="info">
+      <b-navbar class="py-0" fixed="top" toggleable="lg" type="dark" variant="dark">
         <b-navbar-brand to="/">Pinewood Derby</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -19,8 +19,9 @@
           
         </b-collapse>
       </b-navbar>
+
+      <router-view/>
     </div>   
-    <router-view/>
   </div>
 </template>
 
