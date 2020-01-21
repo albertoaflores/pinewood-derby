@@ -2,7 +2,10 @@
   <div id="app">
     <div>
       <b-navbar class="py-0" fixed="top" toggleable="lg" type="dark" variant="dark">
-        <b-navbar-brand to="/">Pinewood Derby</b-navbar-brand>
+        <b-navbar-brand to="/">
+          <font-awesome-icon :icon="['fas', 'car']" />
+          Pinewood Derby
+        </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -10,10 +13,10 @@
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <b-navbar-nav>
-              <b-nav-item to="/dashboard">Dashboard</b-nav-item>
-              <b-nav-item to="/racers" disabled>Racers</b-nav-item>
-              <b-nav-item to="/awards" disabled>Awards</b-nav-item>
-              <b-nav-item to="/about">About</b-nav-item>
+              <b-nav-item to="/dashboard"><font-awesome-icon :icon="['fas', 'desktop']" /> Dashboard</b-nav-item>
+              <b-nav-item to="/racers" disabled><font-awesome-icon :icon="['fas', 'users']" /> Racers</b-nav-item>
+              <b-nav-item to="/awards" disabled><font-awesome-icon :icon="['fas', 'medal']" /> Awards</b-nav-item>
+              <b-nav-item to="/about"><font-awesome-icon :icon="['fas', 'info-circle']" /> About</b-nav-item>
             </b-navbar-nav>
           </b-navbar-nav>
           
