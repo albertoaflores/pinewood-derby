@@ -17,6 +17,8 @@ Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
+// Use moment plugin for Vue
+Vue.use(require('vue-moment'));
 
 new Vue({
   router,

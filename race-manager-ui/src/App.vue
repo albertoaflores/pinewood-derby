@@ -22,31 +22,70 @@
           
         </b-collapse>
       </b-navbar>
-
-      <router-view/>
     </div>   
+    <main>
+      <router-view/>
+    </main>
+    <footer>
+      <div class="container ">
+        <span>{{ displayTime }}</span>
+      </div>
+    </footer>
   </div>
 </template>
 
+<script>
+const moment = require('moment')
+
+export default {
+  data() {
+    return {
+      timeJob : null,
+      displayTime: null
+    }
+  },
+  methods: {
+    updateFooterClock() {
+      this.timeJob = setInterval(function () {
+        this.displayTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
+      }.bind(this), 1000);
+    }
+  },
+  beforeDestroy() {
+    clearInterval(this.timeJob)
+  },
+  created() {
+    this.updateFooterClock()
+  }
+}
+</script>
+
 <style>
-/* #app {
+main {
+    padding: 50px 15px 0;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  line-height: 50px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+/* 
+#app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-} */
-
-/* #nav {
-  padding: 20px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-} */
+}  */
 </style>
