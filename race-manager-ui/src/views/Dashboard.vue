@@ -1,6 +1,17 @@
 <template>
     <div class="dashboard">
-        <h1>This is the dashboard page</h1>
+        <CurrentHeat />
     </div>
-    
 </template>
+
+<script>
+// @ is an alias to /src
+import CurrentHeat from '@/components/CurrentHeat.vue'
+
+export default {
+    name: 'dashboard',
+    components: {
+        CurrentHeat
+    }
+}
+</script>
