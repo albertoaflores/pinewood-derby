@@ -1,14 +1,15 @@
 module.exports = {
 
     // proxy all webpack dev-server requests starting with /api
-    // to our Spring Boot backend (localhost:8088) using http-proxy-middleware
+    // to our Spring Boot backend (localhost:8090) using http-proxy-middleware
     // see https://cli.vuejs.org/config/#devserver-proxy
     devServer: {
         proxy: {
             '/api': {
-                target: 'http://localhost:8090',
+                target: 'http://localhost:8090', // target host
                 ws: true,
-                changeOrigin: true
+                changeOrigin: true,
+                logLevel: 'debug'
             }
         }
     },

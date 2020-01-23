@@ -12,11 +12,12 @@ import lombok.Getter;
 @Builder
 @Getter
 public class LaneResult {
-	private String laneNumber;
 	private Double time;
+	private HeatRank rank;
+	private Integer laneNumber;
 	
 	@Override
 	public String toString() {
-		return "Lane: " + laneNumber + " Time: " + time;
+		return "Lane: " + laneNumber + " Time: " + time + " Rank: " + rank;
 	}
 }

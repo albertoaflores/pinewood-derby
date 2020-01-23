@@ -1,57 +1,54 @@
 <template>
     <div>
-        <h1><font-awesome-icon :icon="['fas', 'road']" /> Current Heat</h1>
+        <h1>
+            <font-awesome-icon :icon="['fas', 'road']" /> Current Heat
+            <button type="button" @click="retrieveHeatResults()" class="btn btn-sm btn-success">
+                <font-awesome-icon :icon="['fas', 'play-circle']" /> Run
+            </button>
+        </h1>
         <div class="row">
-                <div class="col-4 text-center">
-                    <div class="lane">Lane 1</div>
-                    <div class="racer-name current-racer">Christian </div>
-                    <div class="best-time"><font-awesome-icon :icon="['fas', 'clock']" /> Best Time: 3.456</div>
-                    <div class="time"><font-awesome-icon :icon="['far', 'clock']" /> 3.456</div>
-                    <div class="position"><span class="badge badge-pill">--</span></div>
-                </div>
-                <div class="col-4 text-center">
-                    <div class="lane">Lane 2</div>
-                    <div class="racer-name current-racer">Reed </div>
-                    <div class="best-time"><font-awesome-icon :icon="['fas', 'clock']" /> Best Time: 3.456</div>
-                    <div class="time"><font-awesome-icon :icon="['far', 'clock']" /> 2.422</div>
-                    <div class="position"><span class="badge badge-pill ">--</span></div>
-                </div>
-                <div class="col-4 text-center">
-                    <div class="lane">Lane 3</div>
-                    <div class="racer-name current-racer">Jarom </div>
-                    <div class="best-time"><font-awesome-icon :icon="['fas', 'clock']" /> Best Time: 3.456</div>
-                    <div class="time"><font-awesome-icon :icon="['far', 'clock']" /> 2.543</div>
-                    <div class="position"><span class="badge badge-pill ">--</span></div>
-                </div>
-            </div>
+            <LaneInfo :laneNumber=1 v-bind:laneResult="results.lane1" />
+            <LaneInfo :laneNumber=2 v-bind:laneResult="results.lane2" />
+            <LaneInfo :laneNumber=3 v-bind:laneResult="results.lane3" />
+        </div>
     </div>
 </template>
 
 <script>
-export default {
-    name: 'CurrentHeat'
-}
-</script>
+import axios from 'axios'
+import LaneInfo from '@/components/LaneInfo.vue'
 
-<style scoped>
-.lane {
-    font-size: 80%;
-    color: gray;
+export default {
+    name: 'CurrentHeat',
+    components: {
+        LaneInfo
+    },
+ 
+    data() {
+        return {            
+            results: {
+                lane1: {},
+                lane2: {},
+                lane3: {},
+            }, 
+            errors: []
+        }
+    },
+    methods: {
+        
+        retrieveHeatResults() {
+            axios.get('/api/heat-results/recent')
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    this.results.lane1 = response.data['lane1']
+                    this.results.lane2 = response.data['lane2']
+                    this.results.lane3 = response.data['lane3']
+                    })
+                .catch(e => {
+                        this.errors.push(e)
+                    })
+        }
+    }
 }
-.racer-name {
-    font-size: 120%;
-    
-}
-.racer-name.current-racer {
-    font-size: 140%;
-    color: white;
-    background-color: black;   
-    border: 2px solid green;
-    padding: 5px;
-    border-radius: 20px;
-}
-.best-time {
-    color: gray;
-    font-size: 60%;
-}
-</style>
+
+</script>

@@ -15,29 +15,29 @@ import java.util.Date;
 @Builder
 @Getter
 public class HeatResult {
-    private String id;
+    private String uuid;
     private Date timestamp;
-	private LaneResult firstPlace;
-	private LaneResult secondPlace;
-	private LaneResult thirdPlace;
+	private LaneResult lane1;
+	private LaneResult lane2;
+	private LaneResult lane3;
 	
 	@Override
 	public String toString() {
-		return "(1st) " + firstPlace + ", (2nd) " + secondPlace + ", (3rd) " + thirdPlace;
+		return "(1st) " + getLaneResult(HeatRank.FIRST_PLACE) + ", (2nd) " + getLaneResult(HeatRank.SECOND_PLACE) + ", (3rd) " + getLaneResult(HeatRank.THIRD_PLACE);
 	}
 
 	/**
      * Returns the {@link LaneResult}
      */
-	public LaneResult getLaneResult(String laneNumber) {
-		if (firstPlace.getLaneNumber().equals(laneNumber)) {
-			return firstPlace;
-		} else if (secondPlace.getLaneNumber().equals(laneNumber)) {
-			return secondPlace;
-		} else if (thirdPlace.getLaneNumber().equals(laneNumber)) {
-			return thirdPlace;
+	public LaneResult getLaneResult(HeatRank rank) {
+		if (lane1.getRank().equals(rank)) {
+			return lane1;
+		} else if (lane2.getRank().equals(rank)) {
+			return lane2;
+		} else if (lane3.getRank().equals(rank)) {
+			return lane3;
 		}
 		return null;
 	}
-	
+
 }

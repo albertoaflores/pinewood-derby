@@ -1,10 +1,13 @@
 package io.cybertech.pd.sensor.model.parser;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.cybertech.pd.sensor.model.HeatRank;
 import io.cybertech.pd.sensor.model.HeatResult;
 import org.apache.commons.lang3.StringUtils;
 
@@ -43,16 +46,19 @@ public abstract class HeatResultParser {
 		if (matcher.matches()) {
 			log.debug("Building heat results from '{}'", result);
 
+			Map<String, LaneResult> laneReport = new HashMap<>();
+
             // extract first place from buffer
             String firstPlaceLaneNumber = matcher.group(1);
 			String firstPlaceTime = matcher.group(2);
 			if (StringUtils.endsWith(firstPlaceTime, "!")) {
 				firstPlaceTime = StringUtils.removeEnd(firstPlaceTime, "!");
 			}
-			LaneResult firstPlace = LaneResult.builder()
-											  .laneNumber(firstPlaceLaneNumber)
-											  .time(Double.parseDouble(firstPlaceTime))
-											  .build();
+			laneReport.put(firstPlaceLaneNumber, LaneResult.builder()
+																.time(Double.parseDouble(firstPlaceTime))
+																.rank(HeatRank.FIRST_PLACE)
+                                                                .laneNumber(Integer.parseInt(firstPlaceLaneNumber))
+															.build());
 
 			// extract second place from buffer
 			String secondPlaceLaneNumber = matcher.group(3);
@@ -60,10 +66,11 @@ public abstract class HeatResultParser {
 			if (StringUtils.endsWith(secondPlaceTime, "\"")) {
 				secondPlaceTime = StringUtils.removeEnd(secondPlaceTime, "\"");
 			}
-			LaneResult secondPlace = LaneResult.builder()
-											   .laneNumber(secondPlaceLaneNumber)
-											   .time(Double.parseDouble(secondPlaceTime))
-											   .build();
+			laneReport.put(secondPlaceLaneNumber, LaneResult.builder()
+																.time(Double.parseDouble(secondPlaceTime))
+																.rank(HeatRank.SECOND_PLACE)
+                                                                .laneNumber(Integer.parseInt(secondPlaceLaneNumber))
+															.build());
 
             // extract third place from buffer
 			String thirdPlaceLaneNumber = matcher.group(5);
@@ -71,17 +78,18 @@ public abstract class HeatResultParser {
 			if (StringUtils.endsWith(thirdPlaceTime, "#")) {
 				thirdPlaceTime = StringUtils.removeEnd(thirdPlaceTime, "#");
 			}
-			LaneResult thirdPlace = LaneResult.builder()
-											  .laneNumber(thirdPlaceLaneNumber)
-											  .time(Double.parseDouble(thirdPlaceTime))
-											  .build();
+			laneReport.put(thirdPlaceLaneNumber, LaneResult.builder()
+																.time(Double.parseDouble(thirdPlaceTime))
+																.rank(HeatRank.THIRD_PLACE)
+                                                                .laneNumber(Integer.parseInt(thirdPlaceLaneNumber))
+															.build());
 
 			// return result model object
 			return HeatResult.builder()
-                                .id(UUID.randomUUID().toString())
-                                .firstPlace(firstPlace)
-                                .secondPlace(secondPlace)
-                                .thirdPlace(thirdPlace)
+                                .uuid(UUID.randomUUID().toString())
+								.lane1(laneReport.get("1"))
+								.lane2(laneReport.get("2"))
+								.lane3(laneReport.get("3"))
                                 .timestamp(new Date())
                               .build();
 		} else {

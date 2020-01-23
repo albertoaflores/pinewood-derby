@@ -1,28 +1,28 @@
 package io.cybertech.pd.model.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import io.cybertech.pd.sensor.model.LaneResult;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
 
-
+@Builder
 @Getter
-@Setter
 public class Racer {
-	private Long id;
+	private String uuid;
 
 	@NonNull
-	private String racerName;
+	private String name;
 	private String carName;
-	private String groupName;
+	private List<LaneResult> results;
+
 	private Date created;
 	private Date updated;
 	
 	@Override
 	public String toString() {
-		return "Name: " + racerName + ", Car: " + carName + ", Group: " + groupName;
+		return "Name: " + name + ", Car: " + carName;
 	}
 }
