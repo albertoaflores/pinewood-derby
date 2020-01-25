@@ -4,7 +4,8 @@ This is the UI application. It is built using Vue.JS.
 ## Features
 
 - [x] Displays current date time
-- [x] Update data from Heat Event near real-time.
+- [x] Display lane results from anonymous racers. 
+- [x] Update time data from Heat Event by polling.
 - [ ] Ability to add racers
 - [ ] Ability to create heat events
 

@@ -6,10 +6,15 @@
                 <font-awesome-icon :icon="['fas', 'play-circle']" /> Run
             </button>
         </h1>
-        <div class="row">
+        <div class="row" v-if="mode == 'normal'" >
             <LaneInfo :laneNumber=1 v-bind:laneResult="results.lane1" />
             <LaneInfo :laneNumber=2 v-bind:laneResult="results.lane2" />
             <LaneInfo :laneNumber=3 v-bind:laneResult="results.lane3" />
+        </div>
+        <div class="row" v-if="mode == 'anonymous'" >
+            <AnonymousLaneInfo :laneNumber=1 v-bind:laneResult="results.lane1" />
+            <AnonymousLaneInfo :laneNumber=2 v-bind:laneResult="results.lane2" />
+            <AnonymousLaneInfo :laneNumber=3 v-bind:laneResult="results.lane3" />
         </div>
     </div>
 </template>
@@ -17,13 +22,19 @@
 <script>
 import axios from 'axios'
 import LaneInfo from '@/components/LaneInfo.vue'
+import AnonymousLaneInfo from '@/components/AnonymousLaneInfo.vue'
 
 export default {
     name: 'CurrentHeat',
     components: {
-        LaneInfo
+        LaneInfo, AnonymousLaneInfo
+    },   
+    props: {
+        mode: {
+            type: String,
+            required: true
+        }
     },
- 
     data() {
         return {            
             results: {
