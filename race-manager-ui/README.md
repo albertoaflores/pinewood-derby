@@ -3,10 +3,21 @@ This is the UI application. It is built using Vue.JS.
 
 ## Features
 
+### Feature: Login Dashboard
 - [x] Displays current date time
+
+### Feature: Anonymous Heat Events
 - [x] Display lane results from anonymous racers. 
 - [x] Update time data from Heat Event by polling.
-- [ ] Ability to add racers
+- [x] Display the winner of a heat result
+
+### Feature: Racer Management
+- [ ] View all racers
+- [ ] Create racer
+- [ ] Edit existing racer
+ 
+### Feature: Heat Management
+- [ ] Display available heats
 - [ ] Ability to create heat events
 
 ### Project setup
