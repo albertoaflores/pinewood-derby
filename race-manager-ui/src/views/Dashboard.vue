@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard">
+    <div>
         <CurrentHeat mode="anonymous" />
     </div>
 </template>

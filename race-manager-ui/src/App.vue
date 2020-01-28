@@ -14,7 +14,7 @@
           <b-navbar-nav class="ml-auto">
             <b-navbar-nav>
               <b-nav-item to="/dashboard"><font-awesome-icon :icon="['fas', 'desktop']" /> Dashboard</b-nav-item>
-              <b-nav-item to="/racers" disabled><font-awesome-icon :icon="['fas', 'users']" /> Racers</b-nav-item>
+              <b-nav-item to="/racers" ><font-awesome-icon :icon="['fas', 'users']" /> Racers</b-nav-item>
               <b-nav-item to="/awards" disabled><font-awesome-icon :icon="['fas', 'medal']" /> Awards</b-nav-item>
               <b-nav-item to="/about"><font-awesome-icon :icon="['fas', 'info-circle']" /> About</b-nav-item>
             </b-navbar-nav>
@@ -80,12 +80,4 @@ footer > .container {
   padding-right: 15px;
   padding-left: 15px;
 }
-/* 
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}  */
 </style>
