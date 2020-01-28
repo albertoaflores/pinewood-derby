@@ -7,13 +7,14 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCar as fasCar, faDesktop as fasDesktop, faMedal as fasMedal, 
          faUsers as fasUsers, faInfoCircle as fasInfoCircle, faRoad as fasRoad, 
-         faClock as fasClock, faPlayCircle as fasPlayCircle, faTrophy as fasTrophy} from '@fortawesome/free-solid-svg-icons'
+         faClock as fasClock, faPlayCircle as fasPlayCircle, faTrophy as fasTrophy,
+         faStopCircle as fasStopCircle} from '@fortawesome/free-solid-svg-icons'
 import {faClock as farClock} from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(fasCar, fasDesktop, fasMedal, 
             fasUsers, fasInfoCircle, 
-            fasRoad, fasClock, fasPlayCircle, fasTrophy,
+            fasRoad, fasClock, fasPlayCircle, fasTrophy, fasStopCircle,
             farClock)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
