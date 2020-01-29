@@ -18,15 +18,15 @@ public class RacerEndpoint {
     public RacerEndpoint() {
         racers.add(Racer.builder().name("John").build());
         racers.add(Racer.builder().name("Peter").build());
-        racers.add(Racer.builder().name("Emma").build());
+        racers.add(Racer.builder().name("Emma").enabled(true).build());
         racers.add(Racer.builder().name("Daniela").build());
-        racers.add(Racer.builder().name("Isabella").build());
+        racers.add(Racer.builder().name("Isabella").enabled(true).build());
         racers.add(Racer.builder().name("Alejandra").build());
-        racers.add(Racer.builder().name("Giovanna").build());
-        racers.add(Racer.builder().name("Gina").build());
+        racers.add(Racer.builder().name("Giovanna").enabled(true).build());
+        racers.add(Racer.builder().name("Gina").enabled(true).build());
         racers.add(Racer.builder().name("Donna").build());
         racers.add(Racer.builder().name("Gaby P.").build());
-        racers.add(Racer.builder().name("Jordan").build());
+        racers.add(Racer.builder().name("Jordan").enabled(true).build());
         racers.add(Racer.builder().name("Alexa").build());
         racers.add(Racer.builder().name("Monica").build());
     }

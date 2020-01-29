@@ -12,7 +12,7 @@ This is the UI application. It is built using Vue.JS.
 - [x] Display the winner of a heat result
 
 ### Feature 03: Racer Management
-- [ ] View all racers
+- [x] View all racers
 - [ ] Create racer
 - [ ] Edit existing racer
  
