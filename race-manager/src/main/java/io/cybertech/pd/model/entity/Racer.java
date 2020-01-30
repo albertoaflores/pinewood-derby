@@ -5,19 +5,22 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import io.cybertech.pd.sensor.model.LaneResult;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 
+
 @Builder
 @Getter
+@JsonDeserialize(builder = Racer.RacerBuilder.class)
 public class Racer {
     @Builder.Default
 	private String uuid = UUID.randomUUID().toString();
 
-	@NonNull
-	private String name;
+	private final String name;
 
 	@Builder.Default
 	private boolean enabled = false;
@@ -33,6 +36,10 @@ public class Racer {
 	
 	@Override
 	public String toString() {
-		return "Name: " + name;
+		return "UUID: " + uuid + " Name: " + name;
 	}
+
+	@JsonPOJOBuilder(withPrefix = "")
+	public static class RacerBuilder {
+    }
 }

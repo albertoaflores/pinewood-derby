@@ -13,7 +13,7 @@ This is the UI application. It is built using Vue.JS.
 
 ### Feature 03: Racer Management
 - [x] View all racers
-- [ ] Create racer
+- [x] Create racer
 - [ ] Edit existing racer
  
 ### Feature 04: Heat Management

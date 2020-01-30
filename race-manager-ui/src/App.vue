@@ -60,7 +60,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 main {
     padding: 50px 15px 0;
 }
