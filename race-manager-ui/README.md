@@ -14,7 +14,9 @@ This is the UI application. It is built using Vue.JS.
 ### Feature 03: Racer Management
 - [x] View all racers
 - [x] Create racer
-- [ ] Edit existing racer
+- [x] Edit existing racer
+- [ ] Delete existing racer
+- [ ] Upload picture
  
 ### Feature 04: Heat Management
 - [ ] Display available heats
