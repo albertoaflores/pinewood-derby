@@ -87,4 +87,14 @@ public class RacerEndpoint {
             throw new RacerNotFoundException();
         }
     }
+
+    @DeleteMapping(path = "/{uuid}")
+    public void deleteRacer(@PathVariable(name = "uuid") String uuid) {
+        log.info("Deleting Racer: {}", uuid);
+        if (racers.containsKey(uuid)) {
+            racers.remove(uuid);
+        } else {
+            log.warn("Racer {} not found. Ignoring!", uuid);
+        }
+    }
 }

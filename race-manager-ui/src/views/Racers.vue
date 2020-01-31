@@ -11,7 +11,7 @@
         </div>
         <div class="col contestants">
 
-            <b-modal id="racerModal" size="sm" title="Racer Info" @ok="saveRacerInfo">
+            <b-modal id="racerModal" size="sm" title="Add Racer" @ok="saveRacerInfo">
 
                 <b-form>
                     <div class="racerModal-picture text-center">
@@ -41,7 +41,8 @@
                 <RacerThumbnail  
                     v-for="currentRacer in this.racers" 
                     v-bind:key="currentRacer.uuid"
-                    v-bind:racer="currentRacer"/>
+                    v-bind:racer="currentRacer"
+                    v-on:fooEvent="customEvent"/>
             </div>
         </div>
         
@@ -71,6 +72,10 @@ export default {
         }
     },
     methods: {
+        customEvent() {
+            console.log("Refreshing List")
+            this.retrieveRacers()
+        },
         retrieveRacers() {
             axios.get('/api/racer/')
                 .then(response => {

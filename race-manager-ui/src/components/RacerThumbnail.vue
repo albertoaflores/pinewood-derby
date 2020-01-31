@@ -1,5 +1,9 @@
 <template>
     <div class="col-2 text-center racer-info" v-if="racer">
+
+        <button type="button" class="close racer-delete-button" @click="deleteRacer" aria-label="Close">
+            <font-awesome-icon :icon="['fas', 'minus-circle']" size="xs" /> 
+        </button>
         <div class="racer-picture" @click="editRacer">
             <img alt="Pinewood Derby" class="img-thumbnail" 
                  src="../assets/default-racer.png" >
@@ -14,9 +18,10 @@
             </div>
         </div>
 
-        <b-modal :id="racer.uuid" size="sm" title="Racer Info" @ok="saveRacerInfo">
+        <b-modal :id="racer.uuid" size="sm" title="Edit Racer" @ok="saveRacerInfo">
 
             <b-form>
+                
                 <div class="racerModal-picture text-center">
                     <input type="file" id="racerPictureFile" style="display:none"/>
                     <img alt="Pinewood Derby" class="rounded img-thumbnail" src="../assets/default-racer.png">
@@ -58,6 +63,15 @@ export default {
         }
     },
     methods: {
+        deleteRacer() {
+            console.log('Deleting racer ' + this.racer.uuid)
+
+            axios.delete('/api/racer/' + this.racer.uuid)
+                .catch(e => {
+                        this.errors.push(e)
+                });
+            this.$emit("fooEvent")
+        },
         editRacer() {
             console.log('Editing ' + this.racer.uuid)
             this.$bvModal.show(this.racer.uuid)
@@ -95,5 +109,13 @@ export default {
 .racer-notReady {
     color: #ffffff;
     background-color: red;
+}
+.racerModal-picture {
+    padding-bottom: 10px;
+}
+.racer-delete-button {
+    margin-bottom: -25px;
+    margin-right: 5px;
+    color: red;
 }
 </style>
