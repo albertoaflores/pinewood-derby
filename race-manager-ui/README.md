@@ -19,9 +19,13 @@ This is the UI application. It is built using Vue.JS.
 - [ ] Upload picture
  
 ### Feature 04: Heat Management
-- [ ] Display available heats
-- [ ] Ability to create heat events
+- [ ] Display heats set
+- [ ] Create heats set
+- [ ] Edit heats events
+- [ ] Delete existing heats 
 
+### Feature 05: Heat Event Dashboard
+- [ ] Navigate through Heat Events
 
 
 ## Useful Commands

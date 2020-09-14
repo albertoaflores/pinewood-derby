@@ -2,39 +2,30 @@ package io.cybertech.pd.model.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import io.cybertech.pd.sensor.model.HeatResult;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Builder
 @Getter
-@JsonDeserialize(builder = HeatEvent.HeatEventBuilder.class)
-public class HeatEvent {
+@JsonDeserialize(builder = EventSchedule.EventScheduleBuilder.class)
+public class EventSchedule {
     @Builder.Default
     private String uuid = UUID.randomUUID().toString();
 
     @Builder.Default
     private Date created = new Date();
 
-    @NonNull
-    private Racer lane1;
+    @Builder.Default
+    private Date updated = new Date();
 
-    @NonNull
-    private Racer lane2;
-
-    @NonNull
-    private Racer lane3;
-
-    @Setter
-    private HeatResult result;
+    @Builder.Default
+    private List<HeatEvent> events = new ArrayList<>();
 
     @JsonPOJOBuilder(withPrefix = "")
-    public static class HeatEventBuilder {
-
-    }
+    public static class EventScheduleBuilder {}
 }

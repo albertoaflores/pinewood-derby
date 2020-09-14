@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import io.cybertech.pd.sensor.model.LaneResult;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NonNull;
 
 
 @Builder

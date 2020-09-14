@@ -15,6 +15,7 @@
             <b-navbar-nav>
               <b-nav-item to="/dashboard"><font-awesome-icon :icon="['fas', 'desktop']" /> Dashboard</b-nav-item>
               <b-nav-item to="/racers" ><font-awesome-icon :icon="['fas', 'users']" /> Racers</b-nav-item>
+              <b-nav-item to="/heats"><font-awesome-icon :icon="['fas', 'road']" /> Heats</b-nav-item>
               <b-nav-item to="/awards" disabled><font-awesome-icon :icon="['fas', 'medal']" /> Awards</b-nav-item>
               <b-nav-item to="/about"><font-awesome-icon :icon="['fas', 'info-circle']" /> About</b-nav-item>
             </b-navbar-nav>
